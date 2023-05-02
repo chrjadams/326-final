@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Job Search Tracker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="job-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Job Name</th>
+            <th>Company Title</th>
+            <th>Date Applied</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="job-table-body">
+          <!-- dynamic rows will be added here -->
+        </tbody>
+      </table>
+    </div>
+
+    <form id="job-form">
+      <label for="job-name">Job Name:</label>
+      <input type="text" id="job-name">
+  
+      <label for="company-title">Company Title:</label>
+      <input type="text" id="company-title">
+  
+      <label for="date-applied">Date Applied:</label>
+      <input type="date" id="date-applied">
+  
+      <label for="notes">Notes:</label>
+      <textarea id="notes"></textarea>
+  
+        <button type="submit" id="submit-btn">Add Job</button>
+        
+        <div id="sort-buttons">
+          <button id="sort-by-name-btn">Sort by Job Name</button>
+          <button id="sort-by-date-btn">Sort by Date Applied</button>
+        </div>
+   
+
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>
