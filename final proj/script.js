@@ -5,71 +5,73 @@ const sortByDateBtn = document.getElementById("sort-by-date-btn");
 
 let jobs = [];
 
+// hello
+
 jobForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  const jobName = document.getElementById("job-name").value;
-  const companyTitle = document.getElementById("company-title").value;
-  const dateApplied = document.getElementById("date-applied").value;
-  const notes = document.getElementById("notes").value;
+    const jobName = document.getElementById("job-name").value;
+    const companyTitle = document.getElementById("company-title").value;
+    const dateApplied = document.getElementById("date-applied").value;
+    const notes = document.getElementById("notes").value;
 
-  const job = {
-    jobName,
-    companyTitle,
-    dateApplied,
-    notes,
-  };
+    const job = {
+        jobName,
+        companyTitle,
+        dateApplied,
+        notes,
+    };
 
-  jobs.push(job);
+    jobs.push(job);
 
-  displayJobs();
+    displayJobs();
 
-  jobForm.reset();
+    jobForm.reset();
 });
 
 function displayJobs() {
-  // Clear the table body first
-  jobTableBody.innerHTML = "";
+    // Clear the table body first
+    jobTableBody.innerHTML = "";
 
-  // Filter the jobs array to remove any empty entries
-  const filteredJobs = jobs.filter((job) => {
-    return job.jobName.trim() !== "" &&
-           job.companyTitle.trim() !== "" &&
-           job.dateApplied.trim() !== "" &&
-           job.notes.trim() !== "";
-  });
-
-  filteredJobs.forEach((job, index) => {
-    const row = document.createElement("tr");
-
-    const jobNameCell = document.createElement("td");
-    jobNameCell.innerText = job.jobName;
-    row.appendChild(jobNameCell);
-
-    const companyTitleCell = document.createElement("td");
-    companyTitleCell.innerText = job.companyTitle;
-    row.appendChild(companyTitleCell);
-
-    const dateAppliedCell = document.createElement("td");
-    dateAppliedCell.innerText = job.dateApplied;
-    row.appendChild(dateAppliedCell);
-
-    const notesCell = document.createElement("td");
-    notesCell.innerText = job.notes;
-    row.appendChild(notesCell);
-
-    const actionCell = document.createElement("td");
-    const deleteButton = document.createElement("button");
-    deleteButton.innerText = "Delete";
-    deleteButton.addEventListener("click", () => {
-      jobs.splice(index, 1);
-      displayJobs();
+    // Filter the jobs array to remove any empty entries
+    const filteredJobs = jobs.filter((job) => {
+        return job.jobName.trim() !== "" &&
+            job.companyTitle.trim() !== "" &&
+            job.dateApplied.trim() !== "" &&
+            job.notes.trim() !== "";
     });
-    actionCell.appendChild(deleteButton);
-    row.appendChild(actionCell);
 
-    jobTableBody.appendChild(row);
-  });
+    filteredJobs.forEach((job, index) => {
+        const row = document.createElement("tr");
+
+        const jobNameCell = document.createElement("td");
+        jobNameCell.innerText = job.jobName;
+        row.appendChild(jobNameCell);
+
+        const companyTitleCell = document.createElement("td");
+        companyTitleCell.innerText = job.companyTitle;
+        row.appendChild(companyTitleCell);
+
+        const dateAppliedCell = document.createElement("td");
+        dateAppliedCell.innerText = job.dateApplied;
+        row.appendChild(dateAppliedCell);
+
+        const notesCell = document.createElement("td");
+        notesCell.innerText = job.notes;
+        row.appendChild(notesCell);
+
+        const actionCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.addEventListener("click", () => {
+            jobs.splice(index, 1);
+            displayJobs();
+        });
+        actionCell.appendChild(deleteButton);
+        row.appendChild(actionCell);
+
+        jobTableBody.appendChild(row);
+    });
 }
 
 
@@ -78,13 +80,13 @@ function displayJobs() {
 
 
 function sortByName() {
-  jobs.sort((a, b) => a.jobName.localeCompare(b.jobName));
-  displayJobs();
+    jobs.sort((a, b) => a.jobName.localeCompare(b.jobName));
+    displayJobs();
 }
 
 function sortByDate() {
-  jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
-  displayJobs();
+    jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
+    displayJobs();
 }
 
 sortByNameBtn.addEventListener("click", sortByName);
