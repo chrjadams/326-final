@@ -5,6 +5,13 @@ const sortByDateBtn = document.getElementById("sort-by-date-btn");
 
 let jobs = [];
 
+const sortedStatus = {
+    // each value is "unsorted" || "sorted" || "reverse"
+    jobname: "unsorted",
+    companytitle: "unsorted",
+    dateapplied: "unsorted"
+};
+
 // i can use git if you can see this
 
 jobForm.addEventListener("submit", (event) => {
@@ -80,13 +87,33 @@ function displayJobs() {
 
 
 function sortByName() {
-    jobs.sort((a, b) => a.jobName.localeCompare(b.jobName));
-    displayJobs();
+    switch (sortedStatus.jobname) {
+        case ("unsorted"):
+        case ("reverse"):
+            jobs.sort((a, b) => a.jobName.localeCompare(b.jobName));
+            displayJobs();
+            sortedStatus.jobname = "sorted";
+            break;
+        case ("sorted"):
+            jobs.sort((a, b) => a.jobName.localeCompare(b.jobName)).reverse();
+            displayJobs();
+            sortedStatus.jobname = "reverse";
+            break;
+    }
+
 }
 
 function sortByDate() {
     jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
     displayJobs();
+}
+
+function isSortedByName() {
+    if (jobs.length === 0) return false;
+    for (let i = 1; i < jobs.length; i++) {
+        if (jobs[i - 1].jobName.localeCompare(jobs[i].jobName) > 0) return false;
+    }
+    return true;
 }
 
 sortByNameBtn.addEventListener("click", sortByName);
