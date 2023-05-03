@@ -41,6 +41,10 @@ tr:hover {
     font-family: 'Miriam Libre', sans-serif;
 }
 
+#job-form input[type="date"] {
+    width: 10%;
+}
+
 #submit-btn {
     background-color: #4CAF50;
     color: white;
