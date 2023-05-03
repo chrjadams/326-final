@@ -2,6 +2,7 @@ const jobForm = document.getElementById("job-form");
 const jobTableBody = document.getElementById("job-table-body");
 const sortByNameBtn = document.getElementById("sort-by-name-btn");
 const sortByDateBtn = document.getElementById("sort-by-date-btn");
+const sortByCompanyBtn = document.getElementById("sort-by-company-btn");
 
 let jobs = [];
 
@@ -104,8 +105,6 @@ function sortByName() {
 }
 
 function sortByDate() {
-    jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
-    displayJobs();
     switch (sortedStatus.dateapplied) {
         case ("unsorted"):
             jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
@@ -125,13 +124,27 @@ function sortByDate() {
     }
 }
 
-function isSortedByName() {
-    if (jobs.length === 0) return false;
-    for (let i = 1; i < jobs.length; i++) {
-        if (jobs[i - 1].jobName.localeCompare(jobs[i].jobName) > 0) return false;
+function sortByCompany() {
+    switch (sortedStatus.companytitle) {
+        case ("unsorted"):
+            jobs.sort((a, b) => a.companyTitle.localeCompare(b.companyTitle));
+            displayJobs();
+            sortedStatus.companytitle = "sorted";
+            break;
+        case ("sorted"):
+            jobs.sort((a, b) => a.companyTitle.localeCompare(b.companyTitle)).reverse();
+            displayJobs();
+            sortedStatus.companytitle = "reverse";
+            break;
+        case ("reverse"):
+            jobs.sort((a, b) => a.jobName.localeCompare(b.jobName));
+            displayJobs();
+            sortedStatus.companytitle = "unsorted";
+            break;
     }
-    return true;
 }
+
 
 sortByNameBtn.addEventListener("click", sortByName);
 sortByDateBtn.addEventListener("click", sortByDate);
+sortByCompanyBtn.addEventListener("click", sortByCompany);
