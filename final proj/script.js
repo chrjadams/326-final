@@ -106,6 +106,23 @@ function sortByName() {
 function sortByDate() {
     jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
     displayJobs();
+    switch (sortedStatus.dateapplied) {
+        case ("unsorted"):
+            jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied));
+            displayJobs();
+            sortedStatus.dateapplied = "sorted";
+            break;
+        case ("sorted"):
+            jobs.sort((a, b) => new Date(a.dateApplied) - new Date(b.dateApplied)).reverse();
+            displayJobs();
+            sortedStatus.dateapplied = "reverse";
+            break;
+        case ("reverse"):
+            jobs.sort((a, b) => a.jobName.localeCompare(b.jobName));
+            displayJobs();
+            sortedStatus.dateapplied = "unsorted";
+            break;
+    }
 }
 
 function isSortedByName() {
