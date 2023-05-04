@@ -1,5 +1,13 @@
+:root {
+    --bgcolor: #1c1b2f;
+    --textcolor: #e8ead8;
+    --buttoncolor: #6b10ff;
+    --buttonbordercolor: #45629d;
+    --logocolor: #c1a6bd;
+}
+
 body {
-    background-color: #1f1338;
+    background-color: var(--bgcolor);
     width: 100%;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
@@ -14,7 +22,7 @@ h1 {
     margin: 40px auto;
     cursor: pointer;
     transition: .6s;
-    color: #fcdd92;
+    color: var(--logocolor);
 }
 
 h1:before,
@@ -42,7 +50,7 @@ h1:hover:before {
 }
 
 p {
-    color: #fce6d8;
+    color: var(--textcolor);
     font-family: 'Miriam Libre', 'Montserrat', sans-serif;
     margin-left: 40px;
     margin-right: 40px;
@@ -59,7 +67,7 @@ p {
 
 @media (min-width: 48em) {
     .column {
-        width: 50%;
+        width: 40%;
         float: left;
     }
     .columns {
@@ -77,7 +85,7 @@ h2 {
     margin-left: 50px;
     margin-right: 50px;
     font-family: 'Miriam Libre', sans-serif;
-    color: #fde6d9;
+    color: var(--textcolor);
 }
 
 fieldset {
@@ -113,9 +121,10 @@ input[type="password"] {
 input[type="submit"] {
     margin-bottom: 20px;
     margin-left: 51px;
-    background-color: hsl(42, 100%, 69%);
-    border-color: #ffaf00;
+    background-color: var(--buttoncolor);
+    border-color: var(--buttonbordercolor);
     font-size: 23px;
+    color: var(--textcolor);
 }
 
 img {

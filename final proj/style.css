@@ -1,3 +1,13 @@
+:root {
+    --bgcolor: #1c1b2f;
+    --textcolor: #e8ead8;
+    --buttoncolor: #6b10ff;
+    --buttonbordercolor: #45629d;
+    --logocolor: #c1a6bd;
+    --linkcolor: #ffeda8;
+    --textboxcolor: #2a2c3e;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -9,17 +19,23 @@ th,
 td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--textboxcolor);
     font-family: 'Miriam Libre', sans-serif;
 }
 
 th {
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
     font-family: 'Miriam Libre', sans-serif;
+    background-color: var(--textboxcolor);
+}
+
+tr {
+    background-color: var(--bgcolor);
+    color: var(--textcolor);
 }
 
 tr:hover {
-    background-color: #f5f5f5;
+    background-color: var(--buttoncolor);
     font-family: 'Miriam Libre', sans-serif;
 }
 
@@ -27,6 +43,7 @@ tr:hover {
     display: block;
     margin-bottom: 8px;
     font-family: 'Miriam Libre', sans-serif;
+    color: var(--textcolor);
 }
 
 #job-form input[type="text"],
@@ -34,11 +51,13 @@ tr:hover {
 #job-form textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--textboxcolor);
     border-radius: 4px;
     box-sizing: border-box;
     margin-bottom: 16px;
     font-family: 'Miriam Libre', sans-serif;
+    color: var(--textcolor);
+    background-color: var(--textboxcolor);
 }
 
 #job-form input[type="date"] {
@@ -46,8 +65,8 @@ tr:hover {
 }
 
 #submit-btn {
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--buttoncolor);
+    color: var(--textcolor);
     padding: 8px 16px;
     margin-bottom: 32px;
     border: none;
@@ -56,13 +75,15 @@ tr:hover {
     font-family: 'Miriam Libre', sans-serif;
 }
 
-.banner {
-    /* The image used */
-    background-image: url(https://.../mountain.png);
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-}
-
 h1 {
     font-family: 'Shrikhand';
+    color: var(--logocolor);
+}
+
+body {
+    background-color: var(--bgcolor);
+}
+
+a {
+    color: var(--linkcolor);
 }
