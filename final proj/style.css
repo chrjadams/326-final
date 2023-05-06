@@ -87,3 +87,20 @@ body {
 a {
     color: var(--linkcolor);
 }
+
+td input {
+    width: 100%;
+  }
+  
+  td textarea {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .save-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
