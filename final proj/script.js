@@ -100,7 +100,16 @@ function displayJobs() {
         row.appendChild(actionCell);
       });
   
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = "Delete";
+      deleteButton.addEventListener("click", () => {
+        // remove the job from the jobs array
+        jobs.splice(index, 1);
+        // display updated jobs
+        displayJobs();
+      });
       actionCell.appendChild(editButton);
+      actionCell.appendChild(deleteButton);
       row.appendChild(actionCell);
       jobTableBody.appendChild(row);
     });
