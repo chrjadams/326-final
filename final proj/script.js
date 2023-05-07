@@ -40,85 +40,82 @@ jobForm.addEventListener("submit", (event) => {
 function displayJobs() {
     // Clear the table body first
     jobTableBody.innerHTML = "";
-  
+
     // Filter the jobs array to remove any empty entries
     const filteredJobs = jobs.filter((job) => {
-      return (
-        job.jobName.trim() !== "" &&
-        job.companyTitle.trim() !== "" &&
-        job.dateApplied.trim() !== "" &&
-        job.notes.trim() !== ""
-      );
+        return (
+            job.jobName.trim() !== "" &&
+            job.companyTitle.trim() !== "" &&
+            job.dateApplied.trim() !== "" &&
+            job.notes.trim() !== ""
+        );
     });
-  
+
     filteredJobs.forEach((job, index) => {
-      const row = document.createElement("tr");
-  
-      const jobNameCell = document.createElement("td");
-      jobNameCell.innerText = job.jobName;
-      row.appendChild(jobNameCell);
-  
-      const companyTitleCell = document.createElement("td");
-      companyTitleCell.innerText = job.companyTitle;
-      row.appendChild(companyTitleCell);
-  
-      const dateAppliedCell = document.createElement("td");
-      dateAppliedCell.innerText = job.dateApplied;
-      row.appendChild(dateAppliedCell);
-  
-      const notesCell = document.createElement("td");
-      notesCell.innerText = job.notes;
-      row.appendChild(notesCell);
-  
-      const actionCell = document.createElement("td");
-      const editButton = document.createElement("button");
-      editButton.innerText = "Edit";
-      editButton.addEventListener("click", () => {
-        console.log("edit click");
-  
-        jobNameCell.innerHTML = `<input type="text" value="${job.jobName}">`;
-        companyTitleCell.innerHTML = `<input type="text" value="${job.companyTitle}">`;
-        dateAppliedCell.innerHTML = `<input type="date" value="${job.dateApplied}">`;
-        notesCell.innerHTML = `<textarea>${job.notes}</textarea>`;
-        actionCell.innerHTML = `<button class="save-btn">Save</button>`;
-  
-        const saveButton = actionCell.querySelector(".save-btn");
-        saveButton.addEventListener("click", () => {
-          // update job object with new values
-          job.jobName = jobNameCell.querySelector("input").value;
-          job.companyTitle = companyTitleCell.querySelector("input").value;
-          job.dateApplied = dateAppliedCell.querySelector("input").value;
-          job.notes = notesCell.querySelector("textarea").value;
-  
-          // display updated jobs
-          displayJobs();
+        const row = document.createElement("tr");
+
+        const jobNameCell = document.createElement("td");
+        jobNameCell.innerText = job.jobName;
+        row.appendChild(jobNameCell);
+
+        const companyTitleCell = document.createElement("td");
+        companyTitleCell.innerText = job.companyTitle;
+        row.appendChild(companyTitleCell);
+
+        const dateAppliedCell = document.createElement("td");
+        dateAppliedCell.innerText = job.dateApplied;
+        row.appendChild(dateAppliedCell);
+
+        const notesCell = document.createElement("td");
+        notesCell.innerText = job.notes;
+        row.appendChild(notesCell);
+
+        const actionCell = document.createElement("td");
+        const editButton = document.createElement("button");
+        editButton.setAttribute("id", "edit-button");
+        editButton.innerText = "Edit";
+        editButton.addEventListener("click", () => {
+            console.log("edit click");
+
+            jobNameCell.innerHTML = `<input type="text" id="edit-job-name" value="${job.jobName}">`;
+            companyTitleCell.innerHTML = `<input type="text" id="edit-company-title" value="${job.companyTitle}">`;
+            dateAppliedCell.innerHTML = `<input type="date" id="edit-date" value="${job.dateApplied}">`;
+            notesCell.innerHTML = `<textarea id="edit-notes">${job.notes}</textarea>`;
+            actionCell.innerHTML = `<button class="save-btn">Save</button>`;
+
+            const saveButton = actionCell.querySelector(".save-btn");
+            saveButton.addEventListener("click", () => {
+                // update job object with new values
+                job.jobName = jobNameCell.querySelector("input").value;
+                job.companyTitle = companyTitleCell.querySelector("input").value;
+                job.dateApplied = dateAppliedCell.querySelector("input").value;
+                job.notes = notesCell.querySelector("textarea").value;
+
+                // display updated jobs
+                displayJobs();
+            });
+
+            // remove edit button
+            actionCell.removeChild(editButton);
+            // append save button to row
+            row.appendChild(actionCell);
         });
-        
-        // remove edit button
-        actionCell.removeChild(editButton);
-        // append save button to row
+
+        const deleteButton = document.createElement("button");
+        deleteButton.setAttribute("id", "delete-button");
+        deleteButton.innerText = "Delete";
+        deleteButton.addEventListener("click", () => {
+            // remove the job from the jobs array
+            jobs.splice(index, 1);
+            // display updated jobs
+            displayJobs();
+        });
+        actionCell.appendChild(editButton);
+        actionCell.appendChild(deleteButton);
         row.appendChild(actionCell);
-      });
-  
-      const deleteButton = document.createElement("button");
-      deleteButton.innerText = "Delete";
-      deleteButton.addEventListener("click", () => {
-        // remove the job from the jobs array
-        jobs.splice(index, 1);
-        // display updated jobs
-        displayJobs();
-      });
-      actionCell.appendChild(editButton);
-      actionCell.appendChild(deleteButton);
-      row.appendChild(actionCell);
-      jobTableBody.appendChild(row);
+        jobTableBody.appendChild(row);
     });
-  }
-
-
-
-
-
+}
 
 function sortByName() {
     switch (sortedStatus.jobname) {
